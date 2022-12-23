@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.cocktailapp.ui.HomeScreen.HomeScreen
 
 @Composable
 fun CocktailAppNavHost() {
@@ -13,10 +14,10 @@ fun CocktailAppNavHost() {
     NavHost(
         modifier = Modifier,
         navController = navController,
-        startDestination = "Main Screen"
+        startDestination = "Home Screen"
     ) {
-        composable("Main Screen") {
-            MainScreen(navController)
+        composable("Home Screen") {
+            HomeScreen(navController)
         }
         composable("Detail Screen") {
             DetailScreen()
