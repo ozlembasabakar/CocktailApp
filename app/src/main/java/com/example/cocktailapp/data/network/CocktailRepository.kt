@@ -1,19 +1,16 @@
 package com.example.cocktailapp.data.network
 
-import android.app.Application
-import android.util.Log
-import com.example.cocktailapp.R
 import com.example.cocktailapp.data.model.CocktailData
-import com.example.cocktailapp.data.model.Drink
 import javax.inject.Inject
 
-
-@Suppress("UNREACHABLE_CODE")
 class CocktailRepository @Inject constructor(
     private val cocktailApi: CocktailApi,
 ) {
+    suspend fun getRandomCocktail(): CocktailData? {
+        return cocktailApi.getRandomCocktail().drinks.firstOrNull()
+    }
 
-    suspend fun getCocktail(): Drink {
-        return cocktailApi.getCocktail()
+    suspend fun getCocktailById(id: String): CocktailData? {
+        return cocktailApi.getCocktailById(id).drinks.firstOrNull()
     }
 }

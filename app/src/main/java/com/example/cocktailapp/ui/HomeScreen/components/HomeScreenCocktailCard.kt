@@ -1,35 +1,36 @@
 package com.example.cocktailapp.ui.HomeScreen.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.cocktailapp.R
+import com.example.cocktailapp.data.model.CocktailData
 import com.example.cocktailapp.ui.HomeScreen.HomeScreen
+import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
 import com.example.cocktailapp.ui.theme.Shapes
+import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun HomeScreenCocktailCard(
     modifier: Modifier = Modifier,
-    //text:String,
     onClick: () -> Unit,
+    cocktailData: CocktailData?,
 ) {
-
-    //val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
-    //val state by homeScreenViewModel.state.collectAsState()
 
     Card(
         shape = Shapes.small,
@@ -44,8 +45,8 @@ fun HomeScreenCocktailCard(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+            GlideImage(
+                imageModel = cocktailData?.strDrinkThumb,
                 contentDescription = stringResource(id = R.string.app_name),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -62,35 +63,28 @@ fun HomeScreenCocktailCard(
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.Start
             ) {
-                Text(
-                    text = "Cocktail Name",
-                    style = MaterialTheme.typography.h2,
-                    modifier = Modifier
-                        //.align(Alignment.CenterStart)
-                )
+                if (cocktailData != null) {
+                    Text(
+                        text = cocktailData.strDrink,
+                        style = MaterialTheme.typography.h2,
+                        modifier = Modifier
+                    )
+                }
                 Spacer(modifier = Modifier.height(12.dp))
                 Button(
                     onClick = onClick,
                     colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primaryVariant),
                     shape = MaterialTheme.shapes.small,
                     modifier = Modifier
-                        //.align(Alignment.BottomStart)
                 ) {
                     Text(
-                        text = "Detail",
+                        text = stringResource(id = R.string.detail),
                         style = MaterialTheme.typography.button,
-                        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                        modifier = Modifier
+                            .padding(start = 16.dp, end = 16.dp)
                     )
                 }
-
             }
-            /*Box(
-                modifier = Modifier
-                    .weight(2f)
-                    .fillMaxSize()
-                    .padding(12.dp)
-            ) {
-                */
         }
     }
 }
@@ -102,6 +96,9 @@ fun HomeScreenCocktailCard(
 fun CocktailAppPreview() {
     CocktailAppTheme {
         val navController = rememberNavController()
-        HomeScreen(navController = navController)
+        val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
+        val state by homeScreenViewModel.state.collectAsState()
+
+        HomeScreen(navController = navController, state.cocktail)
     }
 }

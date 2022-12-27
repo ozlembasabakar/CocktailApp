@@ -1,8 +1,10 @@
-package com.example.cocktailapp.ui.HomeScreen
+package com.example.cocktailapp.ui.DetailScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cocktailapp.data.network.CocktailRepository
+import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeScreenViewModel @Inject constructor(
+class DetailScreenViewModel @Inject constructor(
     private val cocktailRepository: CocktailRepository,
 ) : ViewModel() {
 
@@ -20,8 +22,9 @@ class HomeScreenViewModel @Inject constructor(
 
     init {
         viewModelScope.launch() {
-            val cocktails = cocktailRepository.getRandomCocktail()
-            _state.value = state.value.copy(cocktail = cocktails)
+            val cocktail = cocktailRepository.getCocktailById(state.value.cocktail!!.idDrink)
+            _state.value = state.value.copy(cocktail = cocktail)
         }
+        Log.d("getCocktailById", state.value.toString())
     }
 }
