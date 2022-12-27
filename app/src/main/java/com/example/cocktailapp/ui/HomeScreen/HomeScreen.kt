@@ -25,6 +25,7 @@ fun HomeScreen(
     navController: NavController,
     cocktailData: CocktailData?,
 ) {
+    val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
 
     Surface(color = MaterialTheme.colors.background) {
         Box(contentAlignment = Alignment.Center,
@@ -36,6 +37,9 @@ fun HomeScreen(
                 modifier = Modifier,
                 onClick = {
                     navController.navigate("Detail Screen")
+                    homeScreenViewModel.saveToDb(
+                            cocktailData = cocktailData)
+
                 },
                 cocktailData = cocktailData
             )
