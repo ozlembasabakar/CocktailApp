@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -45,44 +46,53 @@ fun HomeScreenCocktailCard(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            GlideImage(
-                imageModel = cocktailData?.strDrinkThumb,
-                contentDescription = stringResource(id = R.string.app_name),
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(20.dp))
-                    .fillMaxWidth()
-                    .weight(3f)
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Column(
-                modifier = Modifier
-                    .weight(2f)
-                    .fillMaxSize()
-                    .padding(12.dp),
-                verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.Start
-            ) {
-                if (cocktailData != null) {
+            if (cocktailData != null) {
+                GlideImage(
+                    imageModel = cocktailData.strDrinkThumb,
+                    contentDescription = stringResource(id = R.string.app_name),
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(20.dp))
+                        .fillMaxWidth()
+                        .weight(3f)
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                Column(
+                    modifier = Modifier
+                        .weight(2f)
+                        .fillMaxSize()
+                        .padding(12.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.Start
+                ) {
                     Text(
                         text = cocktailData.strDrink,
                         style = MaterialTheme.typography.h2,
                         modifier = Modifier
                     )
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-                Button(
-                    onClick = onClick,
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primaryVariant),
-                    shape = MaterialTheme.shapes.small,
-                    modifier = Modifier
-                ) {
+                    Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = stringResource(id = R.string.detail),
-                        style = MaterialTheme.typography.button,
-                        modifier = Modifier
-                            .padding(start = 16.dp, end = 16.dp)
+                        text = cocktailData.strInstructions,
+                        style = MaterialTheme.typography.subtitle1,
+                        modifier = Modifier,
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis
                     )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Button(
+                        onClick = onClick,
+                        colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primaryVariant),
+                        shape = MaterialTheme.shapes.small,
+                        modifier = Modifier
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.detail),
+                            style = MaterialTheme.typography.button,
+                            modifier = Modifier
+                                .padding(start = 16.dp, end = 16.dp)
+                        )
+                    }
                 }
             }
         }

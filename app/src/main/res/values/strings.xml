@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">CocktailApp</string>
     <string name="detail">Detail</string>
+    <string name="idDrink">15813</string>
+    <string name="strDrink">Herbal flame</string>
+    <string name="strAlcoholic">Alcoholic</string>
+    <string name="strGlass">Mason jar</string>
+    <string name="strInstructions">Pour Hot Damn 100 in bottom of a jar or regular glass. Fill the rest of the glass with sweet tea. Stir with spoon, straw, or better yet a cinnamon stick and leave it in.</string>
+    <string name="strIngredient1">Hot Damn</string>
+    <string name="strIngredient2">Tea</string>
+    <string name="strIngredient3">Cinnamon</string>
+    <string name="strIngredient4">Sugar</string>
+    <string name="strMeasure1">5 shots </string>
+    <string name="strMeasure2">very sweet </string>
+    <string name="strMeasure3">5 shots </string>
+    <string name="strMeasure4">5 shots </string>
+
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="glass">Glass</string>
 </resources>

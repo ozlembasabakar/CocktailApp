@@ -1,9 +1,5 @@
 package com.example.cocktailapp.data.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class CocktailData(
     val idDrink: String,
     val strAlcoholic: String,
@@ -19,4 +15,4 @@ data class CocktailData(
     val strMeasure2: String,
     val strMeasure3: String,
     val strMeasure4: String,
-) : Parcelable
+)

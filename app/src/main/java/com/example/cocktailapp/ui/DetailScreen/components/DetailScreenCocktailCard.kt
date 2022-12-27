@@ -31,7 +31,6 @@ fun DetailScreenCocktailCard(
     modifier: Modifier = Modifier,
     cocktailData: CocktailData?,
 ) {
-
     Card(
         shape = Shapes.small,
         elevation = 10.dp,
@@ -47,7 +46,7 @@ fun DetailScreenCocktailCard(
             GlideImage(
                 imageModel = cocktailData?.strDrinkThumb,
                 contentDescription = stringResource(id = R.string.app_name),
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .clip(RoundedCornerShape(20.dp))
                     .fillMaxWidth()
@@ -68,7 +67,7 @@ fun DetailScreenCocktailCard(
                 Column {
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = "Instructions",
+                        text = stringResource(id = R.string.instructions),
                         style = MaterialTheme.typography.h1
                     )
                     Text(
@@ -78,7 +77,7 @@ fun DetailScreenCocktailCard(
                     Spacer(modifier = Modifier.height(12.dp))
                     Column {
                         Text(
-                            text = "Ingredients",
+                            text = stringResource(id = R.string.ingredients),
                             style = MaterialTheme.typography.h1
                         )
                         Text(
@@ -104,7 +103,7 @@ fun DetailScreenCocktailCard(
                         verticalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Glass",
+                            text = stringResource(id = R.string.glass),
                             style = MaterialTheme.typography.h1
                         )
                         Spacer(modifier = Modifier.width(12.dp))

@@ -1,6 +1,5 @@
 package com.example.cocktailapp
 
-import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -13,7 +12,6 @@ import com.example.cocktailapp.ui.DetailScreen.DetailScreen
 import com.example.cocktailapp.ui.HomeScreen.HomeScreen
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
 
-@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun CocktailAppNavHost() {
 

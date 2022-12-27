@@ -1,6 +1,5 @@
 package com.example.cocktailapp.ui.DetailScreen
 
-import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,7 +19,6 @@ import com.example.cocktailapp.ui.DetailScreen.components.DetailScreenCocktailCa
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
 
-@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun DetailScreen(
     cocktailData: CocktailData?,
