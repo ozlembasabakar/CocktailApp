@@ -3,6 +3,7 @@ package com.example.cocktailapp.ui.DetailScreen.components
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -19,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cocktailapp.R
-import com.example.cocktailapp.data.model.CocktailData
+import com.example.cocktailapp.data.remote.model.CocktailData
 import com.example.cocktailapp.ui.DetailScreen.DetailScreen
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
@@ -38,85 +39,87 @@ fun DetailScreenCocktailCard(
             .fillMaxSize()
             .background(MaterialTheme.colors.surface)
     ) {
-        Column(
+        LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            GlideImage(
-                imageModel = cocktailData?.strDrinkThumb,
-                contentDescription = stringResource(id = R.string.app_name),
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(20.dp))
-                    .fillMaxWidth()
-                    .weight(1f)
-            )
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .weight(3f)
-                    .padding(12.dp),
-                verticalArrangement = Arrangement.SpaceAround,
-                horizontalAlignment = Alignment.Start
-            ) {
-                Text(
-                    text = cocktailData!!.strDrink,
-                    style = MaterialTheme.typography.h2
+            item {
+                GlideImage(
+                    imageModel = cocktailData?.strDrinkThumb,
+                    contentDescription = stringResource(id = R.string.app_name),
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(20.dp))
+                        .fillMaxWidth()
+                        //.weight(1f)
                 )
-                Column {
-                    Spacer(modifier = Modifier.height(12.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        //.weight(3f)
+                        .padding(12.dp),
+                    verticalArrangement = Arrangement.SpaceAround,
+                    horizontalAlignment = Alignment.Start
+                ) {
                     Text(
-                        text = stringResource(id = R.string.instructions),
-                        style = MaterialTheme.typography.h1
+                        text = cocktailData!!.strDrink,
+                        style = MaterialTheme.typography.h2
                     )
-                    Text(
-                        text = cocktailData.strInstructions,
-                        style = MaterialTheme.typography.subtitle2
-                    )
-                    Spacer(modifier = Modifier.height(12.dp))
                     Column {
+                        Spacer(modifier = Modifier.height(12.dp))
                         Text(
-                            text = stringResource(id = R.string.ingredients),
+                            text = stringResource(id = R.string.instructions),
                             style = MaterialTheme.typography.h1
                         )
                         Text(
-                            text = cocktailData.strMeasure1 + " of " + cocktailData.strIngredient1,
+                            text = cocktailData?.strInstructions,
                             style = MaterialTheme.typography.subtitle2
                         )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Column {
+                            Text(
+                                text = stringResource(id = R.string.ingredients),
+                                style = MaterialTheme.typography.h1
+                            )
+                            Text(
+                                text = cocktailData?.strMeasure1 + " of " + cocktailData?.strIngredient1,
+                                style = MaterialTheme.typography.subtitle2
+                            )
+                            Text(
+                                text = cocktailData?.strMeasure2 + " of " + cocktailData?.strIngredient2,
+                                style = MaterialTheme.typography.subtitle2
+                            )
+                            Text(
+                                text = cocktailData?.strMeasure3 + " of " + cocktailData?.strIngredient3,
+                                style = MaterialTheme.typography.subtitle2
+                            )
+                            Text(
+                                text = cocktailData?.strMeasure4 + " of " + cocktailData?.strIngredient4,
+                                style = MaterialTheme.typography.subtitle2
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Column(
+                            horizontalAlignment = Alignment.Start,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.glass),
+                                style = MaterialTheme.typography.h1
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = cocktailData?.strGlass,
+                                style = MaterialTheme.typography.subtitle2
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(12.dp))
                         Text(
-                            text = cocktailData.strMeasure2 + " of " + cocktailData.strIngredient2,
-                            style = MaterialTheme.typography.subtitle2
-                        )
-                        Text(
-                            text = cocktailData.strMeasure3 + " of " + cocktailData.strIngredient3,
-                            style = MaterialTheme.typography.subtitle2
-                        )
-                        Text(
-                            text = cocktailData.strMeasure4 + " of " + cocktailData.strIngredient4,
-                            style = MaterialTheme.typography.subtitle2
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Column(
-                        horizontalAlignment = Alignment.Start,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.glass),
+                            text = cocktailData?.strAlcoholic,
                             style = MaterialTheme.typography.h1
                         )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Text(
-                            text = cocktailData.strGlass,
-                            style = MaterialTheme.typography.subtitle2
-                        )
                     }
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Text(
-                        text = cocktailData.strAlcoholic,
-                        style = MaterialTheme.typography.h1
-                    )
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.example.cocktailapp.data.network
+package com.example.cocktailapp.data.remote.network
 
 import com.google.gson.GsonBuilder
 import dagger.Module

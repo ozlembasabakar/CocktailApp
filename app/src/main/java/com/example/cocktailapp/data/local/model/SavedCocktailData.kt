@@ -1,4 +1,4 @@
-package com.example.cocktailapp.data.model
+package com.example.cocktailapp.data.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

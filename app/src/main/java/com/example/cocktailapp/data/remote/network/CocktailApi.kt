@@ -1,6 +1,6 @@
-package com.example.cocktailapp.data.network
+package com.example.cocktailapp.data.remote.network
 
-import com.example.cocktailapp.data.model.CocktailResponse
+import com.example.cocktailapp.data.remote.model.CocktailResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

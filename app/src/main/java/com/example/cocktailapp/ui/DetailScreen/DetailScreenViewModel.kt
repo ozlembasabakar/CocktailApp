@@ -3,7 +3,7 @@ package com.example.cocktailapp.ui.DetailScreen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cocktailapp.data.network.CocktailRepository
+import com.example.cocktailapp.data.remote.network.CocktailRepository
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +25,6 @@ class DetailScreenViewModel @Inject constructor(
             val cocktail = cocktailRepository.getCocktailById(state.value.cocktail!!.idDrink)
             _state.value = state.value.copy(cocktail = cocktail)
         }
-        Log.d("getCocktailById", state.value.toString())
+        Log.d("getCocktailById", state.value.cocktail.toString())
     }
 }

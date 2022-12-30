@@ -1,4 +1,4 @@
-package com.example.cocktailapp.data.model
+package com.example.cocktailapp.data.remote.model
 
 data class CocktailData(
     val idDrink: String,

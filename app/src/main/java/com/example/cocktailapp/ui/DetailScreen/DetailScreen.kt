@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.cocktailapp.data.model.CocktailData
+import com.example.cocktailapp.data.remote.model.CocktailData
 import com.example.cocktailapp.ui.DetailScreen.components.DetailScreenCocktailCard
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
@@ -37,6 +37,7 @@ fun DetailScreen(
         }
     }
 }
+
 
 @Preview(name = "LightMode")
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES)

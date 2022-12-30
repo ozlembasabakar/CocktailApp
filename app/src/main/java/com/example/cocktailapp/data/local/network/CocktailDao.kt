@@ -1,10 +1,7 @@
-package com.example.cocktailapp.data.network
+package com.example.cocktailapp.data.local.network
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.example.cocktailapp.data.model.SavedCocktailData
+import androidx.room.*
+import com.example.cocktailapp.data.local.model.SavedCocktailData
 
 @Dao
 interface CocktailDao {

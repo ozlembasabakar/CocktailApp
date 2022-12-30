@@ -1,4 +1,4 @@
-package com.example.cocktailapp.data.network
+package com.example.cocktailapp.data.local.network
 
 import android.content.Context
 import androidx.room.Room

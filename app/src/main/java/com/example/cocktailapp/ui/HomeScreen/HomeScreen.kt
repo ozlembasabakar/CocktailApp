@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.cocktailapp.data.model.CocktailData
+import com.example.cocktailapp.data.remote.model.CocktailData
 import com.example.cocktailapp.ui.HomeScreen.components.HomeScreenCocktailCard
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
 

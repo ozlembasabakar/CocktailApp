@@ -2,10 +2,9 @@ package com.example.cocktailapp.ui.HomeScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cocktailapp.data.model.CocktailData
-import com.example.cocktailapp.data.model.SavedCocktailData
-import com.example.cocktailapp.data.network.CocktailRepository
-import com.example.cocktailapp.data.network.SavedCocktailRepository
+import com.example.cocktailapp.data.local.model.SavedCocktailData
+import com.example.cocktailapp.data.remote.model.CocktailData
+import com.example.cocktailapp.data.remote.network.CocktailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +14,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     private val cocktailRepository: CocktailRepository,
-    private val savedCocktailRepository: SavedCocktailRepository,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeScreenViewState())
@@ -23,6 +21,10 @@ class HomeScreenViewModel @Inject constructor(
         get() = _state
 
     init {
+        fetchDataFromRepository()
+    }
+
+    private fun fetchDataFromRepository() {
         viewModelScope.launch() {
             val cocktails = cocktailRepository.getRandomCocktail()
             _state.value = state.value.copy(cocktail = cocktails)
@@ -46,6 +48,6 @@ class HomeScreenViewModel @Inject constructor(
             strGlass = cocktailData.strGlass,
             strAlcoholic = cocktailData.strAlcoholic,
         )
-        savedCocktailRepository.insertFavorite(savedCocktailData)
+        cocktailRepository.insertCocktailList(savedCocktailData)
     }
 }

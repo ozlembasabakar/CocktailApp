@@ -3,6 +3,7 @@ package com.example.cocktailapp.ui.HomeScreen.components
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -19,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.cocktailapp.R
-import com.example.cocktailapp.data.model.CocktailData
+import com.example.cocktailapp.data.remote.model.CocktailData
 import com.example.cocktailapp.ui.HomeScreen.HomeScreen
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
@@ -40,39 +41,39 @@ fun HomeScreenCocktailCard(
             .fillMaxSize()
             .background(MaterialTheme.colors.surface)
     ) {
-        Column(
+        LazyColumn(
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            if (cocktailData != null) {
+            item {
                 GlideImage(
-                    imageModel = cocktailData.strDrinkThumb,
+                    imageModel = cocktailData?.strDrinkThumb,
                     contentDescription = stringResource(id = R.string.app_name),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .clip(RoundedCornerShape(20.dp))
                         .fillMaxWidth()
-                        .weight(3f)
+                        //.weight(3f)
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Column(
                     modifier = Modifier
-                        .weight(2f)
+                        //.weight(2f)
                         .fillMaxSize()
                         .padding(12.dp),
                     verticalArrangement = Arrangement.SpaceEvenly,
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = cocktailData.strDrink,
+                        text = cocktailData?.strDrink ?: "",
                         style = MaterialTheme.typography.h2,
                         modifier = Modifier
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = cocktailData.strInstructions,
+                        text = cocktailData?.strInstructions ?: "",
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier,
                         maxLines = 3,
