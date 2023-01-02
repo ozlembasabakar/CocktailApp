@@ -22,8 +22,8 @@ class DetailScreenViewModel @Inject constructor(
 
     init {
         viewModelScope.launch() {
-            val cocktail = cocktailRepository.getCocktailById(state.value.cocktail!!.idDrink)
-            _state.value = state.value.copy(cocktail = cocktail)
+            //val cocktail = cocktailRepository.getCocktailById(state.value.cocktail!!.idDrink)
+            //_state.value = state.value.copy(cocktail = cocktail)
         }
         Log.d("getCocktailById", state.value.cocktail.toString())
     }

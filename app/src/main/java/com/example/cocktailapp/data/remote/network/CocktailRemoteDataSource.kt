@@ -8,10 +8,6 @@ class CocktailRemoteDataSource @Inject constructor(
 ) {
 
     suspend fun getRandomCocktail(): CocktailData? {
-        //insertFavorite(cocktailApi.getRandomCocktail().drinks.firstOrNull())
-        //return daodaki get fonksiyonu
-        //insertCocktailList(cocktailApi.getRandomCocktail().drinks.firstOrNull())
-
         return cocktailApi.getRandomCocktail().drinks.firstOrNull()
     }
 

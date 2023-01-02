@@ -48,7 +48,7 @@ fun DetailScreenCocktailCard(
                 GlideImage(
                     imageModel = cocktailData?.strDrinkThumb,
                     contentDescription = stringResource(id = R.string.app_name),
-                    contentScale = ContentScale.Fit,
+                    contentScale = ContentScale.FillWidth,
                     modifier = Modifier
                         .clip(RoundedCornerShape(20.dp))
                         .fillMaxWidth()

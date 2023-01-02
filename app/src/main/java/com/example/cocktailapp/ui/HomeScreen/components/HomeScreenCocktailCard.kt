@@ -27,6 +27,7 @@ import com.example.cocktailapp.ui.theme.CocktailAppTheme
 import com.example.cocktailapp.ui.theme.Shapes
 import com.skydoves.landscapist.glide.GlideImage
 
+@Suppress("UNUSED_EXPRESSION")
 @Composable
 fun HomeScreenCocktailCard(
     modifier: Modifier = Modifier,
@@ -55,7 +56,7 @@ fun HomeScreenCocktailCard(
                     modifier = Modifier
                         .clip(RoundedCornerShape(20.dp))
                         .fillMaxWidth()
-                        //.weight(3f)
+                    //.weight(3f)
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Column(

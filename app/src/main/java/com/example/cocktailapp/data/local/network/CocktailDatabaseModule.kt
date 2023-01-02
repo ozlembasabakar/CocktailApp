@@ -23,7 +23,10 @@ class CocktailDatabaseModule {
         return Room.databaseBuilder(
             appContext,
             CocktailDatabase::class.java,
-            "CocktailApp"
-        ).build()
+            "CocktailApp",
+
+            )
+            .allowMainThreadQueries()
+            .build()
     }
 }
