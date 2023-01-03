@@ -1,6 +1,5 @@
 package com.example.cocktailapp.ui.DetailScreen.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,28 +8,21 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cocktailapp.R
-import com.example.cocktailapp.data.remote.model.CocktailData
-import com.example.cocktailapp.ui.DetailScreen.DetailScreen
-import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
-import com.example.cocktailapp.ui.theme.CocktailAppTheme
+import com.example.cocktailapp.data.local.model.SavedCocktailData
 import com.example.cocktailapp.ui.theme.Shapes
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun DetailScreenCocktailCard(
     modifier: Modifier = Modifier,
-    cocktailData: CocktailData?,
+    cocktailData: SavedCocktailData?,
 ) {
     Card(
         shape = Shapes.small,
@@ -52,7 +44,7 @@ fun DetailScreenCocktailCard(
                     modifier = Modifier
                         .clip(RoundedCornerShape(20.dp))
                         .fillMaxWidth()
-                        //.weight(1f)
+                    //.weight(1f)
                 )
                 Column(
                     modifier = Modifier
@@ -63,7 +55,7 @@ fun DetailScreenCocktailCard(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = cocktailData!!.strDrink,
+                        text = cocktailData?.strDrink.toString(),
                         style = MaterialTheme.typography.h2
                     )
                     Column {
@@ -73,7 +65,7 @@ fun DetailScreenCocktailCard(
                             style = MaterialTheme.typography.h1
                         )
                         Text(
-                            text = cocktailData?.strInstructions,
+                            text = cocktailData?.strInstructions.toString(),
                             style = MaterialTheme.typography.subtitle2
                         )
                         Spacer(modifier = Modifier.height(12.dp))
@@ -110,13 +102,13 @@ fun DetailScreenCocktailCard(
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
-                                text = cocktailData?.strGlass,
+                                text = cocktailData?.strGlass.toString(),
                                 style = MaterialTheme.typography.subtitle2
                             )
                         }
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
-                            text = cocktailData?.strAlcoholic,
+                            text = cocktailData?.strAlcoholic.toString(),
                             style = MaterialTheme.typography.h1
                         )
                     }
@@ -126,10 +118,11 @@ fun DetailScreenCocktailCard(
     }
 }
 
-
+/*
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
+
 fun CocktailAppPreview() {
     CocktailAppTheme {
         val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
@@ -137,4 +130,4 @@ fun CocktailAppPreview() {
 
         DetailScreen(cocktailData = state.cocktail)
     }
-}
+}*/

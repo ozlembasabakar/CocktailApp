@@ -24,6 +24,10 @@ class CocktailLocalDataSource @Inject constructor(
         return cocktailDao.getSavedCocktailList()
     }
 
+    fun getSavedCocktailById(id: String?): SavedCocktailData {
+        return cocktailDao.getSavedCocktailById(id)
+    }
+
     fun saveToDb(cocktailData: CocktailData?) {
         val savedCocktailData = SavedCocktailData(
             idDrink = cocktailData?.idDrink ?: "null",

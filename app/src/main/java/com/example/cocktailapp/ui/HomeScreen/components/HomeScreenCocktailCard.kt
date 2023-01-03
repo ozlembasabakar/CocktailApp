@@ -31,7 +31,6 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun HomeScreenCocktailCard(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit,
     cocktailData: CocktailData?,
 ) {
 
@@ -64,7 +63,7 @@ fun HomeScreenCocktailCard(
                         //.weight(2f)
                         .fillMaxSize()
                         .padding(12.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly,
+                    verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
@@ -82,7 +81,7 @@ fun HomeScreenCocktailCard(
                     )
 
                     Spacer(modifier = Modifier.height(12.dp))
-                    Button(
+                    /*Button(
                         onClick = onClick,
                         colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primaryVariant),
                         shape = MaterialTheme.shapes.small,
@@ -94,7 +93,7 @@ fun HomeScreenCocktailCard(
                             modifier = Modifier
                                 .padding(start = 16.dp, end = 16.dp)
                         )
-                    }
+                    }*/
                 }
             }
         }

@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cocktailapp.ui.DetailScreen.DetailScreen
+import com.example.cocktailapp.ui.DetailScreen.DetailScreenViewModel
 import com.example.cocktailapp.ui.HomeScreen.HomeScreen
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
 
@@ -18,7 +19,10 @@ fun CocktailAppNavHost() {
     val navController = rememberNavController()
 
     val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
-    val state by homeScreenViewModel.state.collectAsState()
+    val homeScreenViewState by homeScreenViewModel.state.collectAsState()
+
+    val detailScreenViewModel: DetailScreenViewModel = hiltViewModel()
+    val detailScreenViewState by detailScreenViewModel.state.collectAsState()
 
     NavHost(
         modifier = Modifier,
@@ -26,10 +30,10 @@ fun CocktailAppNavHost() {
         startDestination = "Home Screen"
     ) {
         composable("Home Screen") {
-            HomeScreen(navController, state.cocktail)
+            HomeScreen(navController, homeScreenViewState.cocktail)
         }
         composable("Detail Screen") {
-            DetailScreen(state.cocktail)
+            DetailScreen(detailScreenViewState.cocktail)
         }
     }
 }

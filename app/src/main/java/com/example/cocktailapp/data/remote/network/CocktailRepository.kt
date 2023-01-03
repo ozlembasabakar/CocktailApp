@@ -1,5 +1,6 @@
 package com.example.cocktailapp.data.remote.network
 
+import com.example.cocktailapp.data.local.model.SavedCocktailData
 import com.example.cocktailapp.data.local.network.CocktailLocalDataSource
 import com.example.cocktailapp.data.remote.model.CocktailData
 import javax.inject.Inject
@@ -8,7 +9,7 @@ class CocktailRepository @Inject constructor(
     private val cocktailRemoteDataSource: CocktailRemoteDataSource,
     private val cocktailLocalDataSource: CocktailLocalDataSource,
 ) {
-    suspend fun getRandomCocktail(): CocktailData {
+    suspend fun getRandomCocktail(): CocktailData? {
         saveToDb(cocktailRemoteDataSource.getRandomCocktail())
         return cocktailLocalDataSource.getSavedCocktailList().map {
             CocktailData(
@@ -27,14 +28,14 @@ class CocktailRepository @Inject constructor(
                 strGlass = it.strGlass,
                 strAlcoholic = it.strAlcoholic,
             )
-        }.random()
+        }.lastOrNull()
     }
 
-    suspend fun getCocktailById(id: String): CocktailData? {
-        return cocktailRemoteDataSource.getCocktailById(id)
+    suspend fun getCocktailFromDatabaseById(): SavedCocktailData {
+        return cocktailLocalDataSource.getSavedCocktailById(getRandomCocktail()?.idDrink)
     }
 
-    fun saveToDb(cocktailData: CocktailData?) {
+    private fun saveToDb(cocktailData: CocktailData?) {
         cocktailLocalDataSource.saveToDb(cocktailData = cocktailData)
     }
 }
