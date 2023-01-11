@@ -4,9 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cocktailapp.data.remote.network.CocktailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,8 +27,15 @@ class HomeScreenViewModel @Inject constructor(
 
     private fun fetchDataFromRepository() {
         viewModelScope.launch() {
-            val cocktails = cocktailRepository.getRandomCocktail()
-            _state.value = state.value.copy(cocktail = cocktails)
+            withContext(Dispatchers.IO) {
+                val cocktails = cocktailRepository.getRandomCocktail()
+                //_state.value = state.value.copy(cocktail = cocktails)
+                _state.update { currentState ->
+                    currentState.copy(
+                        cocktail = cocktails
+                    )
+                }
+            }
         }
     }
 }
