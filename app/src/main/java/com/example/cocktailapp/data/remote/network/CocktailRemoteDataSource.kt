@@ -10,8 +10,4 @@ class CocktailRemoteDataSource @Inject constructor(
     suspend fun getRandomCocktail(): CocktailData? {
         return cocktailApi.getRandomCocktail().drinks.firstOrNull()
     }
-
-    suspend fun getCocktailById(id: String): CocktailData? {
-        return cocktailApi.getCocktailById(id).drinks.firstOrNull()
-    }
 }

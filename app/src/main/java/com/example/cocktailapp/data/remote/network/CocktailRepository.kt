@@ -1,16 +1,27 @@
 package com.example.cocktailapp.data.remote.network
 
+import android.util.Log
 import com.example.cocktailapp.data.local.model.SavedCocktailData
 import com.example.cocktailapp.data.local.network.CocktailLocalDataSource
 import com.example.cocktailapp.data.remote.model.CocktailData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CocktailRepository @Inject constructor(
     private val cocktailRemoteDataSource: CocktailRemoteDataSource,
     private val cocktailLocalDataSource: CocktailLocalDataSource,
 ) {
+    private val coroutineScope = CoroutineScope(Dispatchers.Default)
+
     suspend fun getRandomCocktail(): CocktailData? {
-        saveToDb(cocktailRemoteDataSource.getRandomCocktail())
+        coroutineScope.launch(Dispatchers.IO) {
+            saveToDb(cocktailRemoteDataSource.getRandomCocktail())
+        }
+
+        Log.d("lastIndex", "${cocktailLocalDataSource.getSavedCocktailList().size}")
+
         return cocktailLocalDataSource.getSavedCocktailList().map {
             CocktailData(
                 idDrink = it.idDrink,

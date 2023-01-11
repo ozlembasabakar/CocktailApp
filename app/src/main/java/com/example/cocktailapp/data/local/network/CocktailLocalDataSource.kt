@@ -1,5 +1,6 @@
 package com.example.cocktailapp.data.local.network
 
+import android.util.Log
 import com.example.cocktailapp.data.local.model.SavedCocktailData
 import com.example.cocktailapp.data.remote.model.CocktailData
 import kotlinx.coroutines.CoroutineScope
@@ -14,18 +15,20 @@ class CocktailLocalDataSource @Inject constructor(
 
     private val coroutineScope = CoroutineScope(Dispatchers.Default)
 
-    fun insertCocktailList(addSavedCocktailData: SavedCocktailData) {
-        coroutineScope.launch(Dispatchers.IO) {
-            cocktailDao.insertSavedCocktailList(addSavedCocktailData)
-        }
-    }
-
     fun getSavedCocktailList(): List<SavedCocktailData> {
+        Log.d("CocktailLocalDataSource", "${(cocktailDao.getSavedCocktailList().size) - 1}")
+
         return cocktailDao.getSavedCocktailList()
     }
 
     fun getSavedCocktailById(id: String?): SavedCocktailData {
         return cocktailDao.getSavedCocktailById(id)
+    }
+
+    fun insertCocktailList(addSavedCocktailData: SavedCocktailData) {
+        coroutineScope.launch(Dispatchers.IO) {
+            cocktailDao.insertSavedCocktailList(addSavedCocktailData)
+        }
     }
 
     fun saveToDb(cocktailData: CocktailData?) {
