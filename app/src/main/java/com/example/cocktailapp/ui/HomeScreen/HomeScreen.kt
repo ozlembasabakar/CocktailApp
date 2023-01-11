@@ -63,24 +63,7 @@ fun CocktailAppPreview() {
         val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
         val state by homeScreenViewModel.state.collectAsState()
 
-        HomeScreen(navController = navController,
-            /*cocktailData = CocktailData(
-                idDrink = R.string.idDrink.toString(),
-                strMeasure1 = R.string.strMeasure1.toString(),
-                strMeasure2 = R.string.strMeasure2.toString(),
-                strMeasure3 = R.string.strMeasure2.toString(),
-                strMeasure4 = R.string.strMeasure2.toString(),
-                strAlcoholic = R.string.strAlcoholic.toString(),
-                strDrink = R.string.strDrink.toString(),
-                strDrinkThumb = R.drawable.ic_launcher_background.toString(),
-                strGlass = R.string.strGlass.toString(),
-                strIngredient1 = R.string.strIngredient1.toString(),
-                strIngredient2 = R.string.strIngredient2.toString(),
-                strIngredient3 = R.string.strIngredient3.toString(),
-                strIngredient4 = R.string.strIngredient4.toString(),
-                strInstructions = R.string.strInstructions.toString()
-            )*/
-            cocktailData = state.cocktail
+        HomeScreen(navController = navController, cocktailData = state.cocktail
         )
     }
 }

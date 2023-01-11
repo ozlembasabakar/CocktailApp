@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -36,7 +35,6 @@ fun HomeScreenCocktailCard(
 
     Card(
         shape = Shapes.small,
-        elevation = 10.dp,
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colors.surface)
@@ -53,25 +51,25 @@ fun HomeScreenCocktailCard(
                     contentDescription = stringResource(id = R.string.app_name),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(20.dp))
+                        .clip(Shapes.small)
                         .fillMaxWidth()
                     //.weight(3f)
                 )
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(16.dp))
                 Column(
                     modifier = Modifier
                         //.weight(2f)
                         .fillMaxSize()
-                        .padding(12.dp),
+                        .padding(16.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
                         text = cocktailData?.strDrink ?: "",
                         style = MaterialTheme.typography.h2,
-                        modifier = Modifier
+                        modifier = Modifier,
                     )
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = cocktailData?.strInstructions ?: "",
                         style = MaterialTheme.typography.subtitle1,
@@ -79,21 +77,6 @@ fun HomeScreenCocktailCard(
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis
                     )
-
-                    Spacer(modifier = Modifier.height(12.dp))
-                    /*Button(
-                        onClick = onClick,
-                        colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primaryVariant),
-                        shape = MaterialTheme.shapes.small,
-                        modifier = Modifier
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.detail),
-                            style = MaterialTheme.typography.button,
-                            modifier = Modifier
-                                .padding(start = 16.dp, end = 16.dp)
-                        )
-                    }*/
                 }
             }
         }
