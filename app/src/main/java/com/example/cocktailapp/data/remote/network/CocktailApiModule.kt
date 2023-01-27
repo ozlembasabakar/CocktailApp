@@ -1,5 +1,6 @@
 package com.example.cocktailapp.data.remote.network
 
+import com.example.cocktailapp.BuildConfig
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -10,8 +11,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+//import com.example.cocktailapp.BuildConfig
 
-const val BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/"
+//const val BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -28,7 +30,7 @@ object CocktailApiModule {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         val httpClient: OkHttpClient.Builder = OkHttpClient.Builder().addInterceptor(logging)
 
-        return Retrofit.Builder().baseUrl(BASE_URL)
+        return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson)).client(httpClient.build())
     }
 
