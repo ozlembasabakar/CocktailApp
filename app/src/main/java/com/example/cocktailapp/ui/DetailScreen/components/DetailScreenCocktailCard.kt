@@ -45,7 +45,7 @@ fun DetailScreenCocktailCard(
             item {
                 GlideImage(
                     imageModel = cocktailData?.strDrinkThumb,
-                    contentDescription = stringResource(id = R.string.app_name),
+                    contentDescription = cocktailData?.strDrink.toString(),
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
                         .clip(Shapes.small)
@@ -62,46 +62,54 @@ fun DetailScreenCocktailCard(
                 ) {
                     Text(
                         text = cocktailData?.strDrink.toString(),
-                        style = MaterialTheme.typography.h2
+                        style = MaterialTheme.typography.h2,
+                        color = MaterialTheme.colors.onSurface
                     )
                     Column {
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
                             text = stringResource(id = R.string.instructions),
-                            style = MaterialTheme.typography.h1
+                            style = MaterialTheme.typography.h1,
+                            color = MaterialTheme.colors.onSurface
                         )
                         Text(
                             text = cocktailData?.strInstructions.toString(),
-                            style = MaterialTheme.typography.subtitle2
+                            style = MaterialTheme.typography.subtitle2,
+                            color = MaterialTheme.colors.onSurface
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Column {
                             Text(
                                 text = stringResource(id = R.string.ingredients),
-                                style = MaterialTheme.typography.h1
+                                style = MaterialTheme.typography.h1,
+                                color = MaterialTheme.colors.onSurface
                             )
                             if (cocktailData?.strMeasure1 != "null" || cocktailData.strIngredient1 != "null") {
                                 Text(
                                     text = cocktailData?.strMeasure1 + " of " + cocktailData?.strIngredient1,
-                                    style = MaterialTheme.typography.subtitle2
+                                    style = MaterialTheme.typography.subtitle2,
+                                    color = MaterialTheme.colors.onSurface
                                 )
                             }
                             if (cocktailData?.strMeasure2 != "null" || cocktailData.strIngredient2 != "null") {
                                 Text(
                                     text = cocktailData?.strMeasure2 + " of " + cocktailData?.strIngredient2,
-                                    style = MaterialTheme.typography.subtitle2
+                                    style = MaterialTheme.typography.subtitle2,
+                                    color = MaterialTheme.colors.onSurface
                                 )
                             }
                             if (cocktailData?.strMeasure3 != "null" || cocktailData.strIngredient3 != "null") {
                                 Text(
                                     text = cocktailData?.strMeasure3 + " of " + cocktailData?.strIngredient3,
-                                    style = MaterialTheme.typography.subtitle2
+                                    style = MaterialTheme.typography.subtitle2,
+                                    color = MaterialTheme.colors.onSurface
                                 )
                             }
                             if (cocktailData?.strMeasure4 != "null" || cocktailData.strIngredient4 != "null") {
                                 Text(
                                     text = cocktailData?.strMeasure4 + " of " + cocktailData?.strIngredient4,
-                                    style = MaterialTheme.typography.subtitle2
+                                    style = MaterialTheme.typography.subtitle2,
+                                    color = MaterialTheme.colors.onSurface
                                 )
                             }
                         }
@@ -112,18 +120,21 @@ fun DetailScreenCocktailCard(
                         ) {
                             Text(
                                 text = stringResource(id = R.string.glass),
-                                style = MaterialTheme.typography.h1
+                                style = MaterialTheme.typography.h1,
+                                color = MaterialTheme.colors.onSurface
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
                                 text = cocktailData?.strGlass.toString(),
-                                style = MaterialTheme.typography.subtitle2
+                                style = MaterialTheme.typography.subtitle2,
+                                color = MaterialTheme.colors.onSurface
                             )
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
                             text = cocktailData?.strAlcoholic.toString(),
-                            style = MaterialTheme.typography.h1
+                            style = MaterialTheme.typography.h1,
+                            color = MaterialTheme.colors.onSurface
                         )
                     }
                 }

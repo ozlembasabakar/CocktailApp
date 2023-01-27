@@ -21,11 +21,26 @@ android {
             useSupportLibrary true
         }
     }
-
     buildTypes {
         release {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    appIcon     : "@mipmap/ic_launcher_release",
+                    appIconRound: "@mipmap/app_icon_release",
+                    appName     : "@string/app_name_release",
+                    appTheme    : "@style/AppTheme"
+            ]
+        }
+        debug {
+            debuggable true
+            manifestPlaceholders = [
+                    appIcon     : "@mipmap/ic_launcher_dedug",
+                    appIconRound: "@mipmap/app_icon_debug",
+                    appName     : "@string/app_name_debug",
+                    appTheme    : "@style/AppTheme"
+            ]
         }
     }
     compileOptions {

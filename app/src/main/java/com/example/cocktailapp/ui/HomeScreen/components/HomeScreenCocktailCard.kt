@@ -12,13 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.cocktailapp.R
 import com.example.cocktailapp.data.remote.model.CocktailData
 import com.example.cocktailapp.ui.HomeScreen.HomeScreen
 import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
@@ -48,7 +46,7 @@ fun HomeScreenCocktailCard(
             item {
                 GlideImage(
                     imageModel = cocktailData?.strDrinkThumb,
-                    contentDescription = stringResource(id = R.string.app_name),
+                    contentDescription = cocktailData?.strDrink.toString(),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .clip(Shapes.small)
@@ -68,6 +66,7 @@ fun HomeScreenCocktailCard(
                         text = cocktailData?.strDrink ?: "",
                         style = MaterialTheme.typography.h2,
                         modifier = Modifier,
+                        color = MaterialTheme.colors.onSurface
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
@@ -75,7 +74,8 @@ fun HomeScreenCocktailCard(
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier,
                         maxLines = 3,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        color = MaterialTheme.colors.onSurface
                     )
                 }
             }

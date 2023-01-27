@@ -8,18 +8,19 @@
         android:name=".CocktailApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:debuggable="true"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="${appIcon}"
+        android:label="${appName}"
+        android:roundIcon="${appIconRound}"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CocktailApp"
+        android:theme="${appTheme}"
+        tools:ignore="HardcodedDebugMode"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.CocktailApp">
+            android:theme="${appTheme}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

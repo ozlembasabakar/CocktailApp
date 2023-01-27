@@ -39,7 +39,7 @@ class DetailScreenViewModel @Inject constructor(
                         cocktail = cocktail
                     )
                 }
-                Log.d("getSavedCocktailById",
+                Log.d("lastIndexVM",
                     cocktailRepository.getCocktailFromDatabaseById().toString())
             }
         }

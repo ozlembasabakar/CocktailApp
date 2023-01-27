@@ -5,34 +5,39 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.example.cocktailapp.BuildConfig.BUILD_TYPE
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPaletteDebug = darkColors(
     primary = Purple40,
     primaryVariant = PurpleGrey40,
     secondary = Pink40
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPaletteDebug = lightColors(
     primary = Purple80,
     primaryVariant = PurpleGrey80,
     secondary = Pink80
+)
 
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+private val LightColorPaletteRelease = lightColors(
+    surface = SurfaceLight,
+    background = BackgroundLight,
+    onSurface = Color.Black
+)
+
+private val DarkColorPaletteRelease = darkColors(
+    surface = SurfaceDark,
+    background = BackgroundDark,
+    onSurface = Color.White
 )
 
 @Composable
 fun CocktailAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
+    val colors = if (BUILD_TYPE == "debug") {
+        if (darkTheme) DarkColorPaletteDebug else LightColorPaletteDebug
     } else {
-        LightColorPalette
+        if (darkTheme) DarkColorPaletteRelease else LightColorPaletteRelease
     }
 
     MaterialTheme(

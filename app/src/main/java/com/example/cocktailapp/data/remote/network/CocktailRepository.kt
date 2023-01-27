@@ -5,6 +5,7 @@ import com.example.cocktailapp.data.local.model.SavedCocktailData
 import com.example.cocktailapp.data.local.network.CocktailLocalDataSource
 import com.example.cocktailapp.data.remote.model.CocktailData
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -15,6 +16,7 @@ class CocktailRepository @Inject constructor(
     suspend fun getRandomCocktail(): CocktailData? {
         withContext(Dispatchers.IO) {
             saveToDb(cocktailRemoteDataSource.getRandomCocktail())
+            delay(500)
         }
 
         Log.d("lastIndex", "${cocktailLocalDataSource.getSavedCocktailList().size}")
