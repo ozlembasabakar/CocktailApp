@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,8 +19,8 @@ class HomeScreenViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeScreenViewState())
-    val state: StateFlow<HomeScreenViewState>
-        get() = _state
+    val state: StateFlow<HomeScreenViewState> = _state.asStateFlow()
+        // get() = _state
 
     init {
         fetchDataFromRepository()
