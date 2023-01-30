@@ -1,8 +1,8 @@
-package com.example.cocktailapp.ui.HomeScreen
+package com.example.cocktailapp.ui.homeScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cocktailapp.data.remote.network.CocktailRepository
+import com.example.cocktailapp.domain.GetRandomCocktailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,25 +15,32 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private val cocktailRepository: CocktailRepository,
+    private val getRandomCocktailUseCase: GetRandomCocktailUseCase,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(HomeScreenViewState())
+    private val _state = MutableStateFlow(HomeScreenViewState(cocktailSummary = null))
     val state: StateFlow<HomeScreenViewState> = _state.asStateFlow()
-        // get() = _state
+    // get() = _state
 
     init {
-        fetchDataFromRepository()
+        fetchDataFromUseCase()
     }
 
-    private fun fetchDataFromRepository() {
+    private fun fetchDataFromUseCase() {
         viewModelScope.launch() {
             withContext(Dispatchers.IO) {
-                val cocktails = cocktailRepository.getRandomCocktail()
+                val cocktail = getRandomCocktailUseCase()
+
+                val cocktailSummary = CocktailSummary(
+                    id = cocktail?.id.orEmpty(),
+                    imageUrl = cocktail?.imageUrl.orEmpty(),
+                    name = cocktail?.name.orEmpty(),
+                    description = cocktail?.description.orEmpty()
+                )
                 //_state.value = state.value.copy(cocktail = cocktails)
                 _state.update { currentState ->
                     currentState.copy(
-                        cocktail = cocktails
+                        cocktailSummary = cocktailSummary
                     )
                 }
             }

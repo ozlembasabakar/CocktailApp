@@ -6,13 +6,15 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.cocktailapp.ui.DetailScreen.DetailScreen
-import com.example.cocktailapp.ui.DetailScreen.DetailScreenViewModel
-import com.example.cocktailapp.ui.HomeScreen.HomeScreen
-import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
+import androidx.navigation.navArgument
+import com.example.cocktailapp.ui.detailScreen.DetailScreen
+import com.example.cocktailapp.ui.detailScreen.DetailScreenViewModel
+import com.example.cocktailapp.ui.homeScreen.HomeScreen
+import com.example.cocktailapp.ui.homeScreen.HomeScreenViewModel
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -23,19 +25,25 @@ fun CocktailAppNavHost() {
     val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
     val homeScreenViewState by homeScreenViewModel.state.collectAsStateWithLifecycle()
 
-    val detailScreenViewModel: DetailScreenViewModel = hiltViewModel()
-    val detailScreenViewState by detailScreenViewModel.state.collectAsStateWithLifecycle()
-
     NavHost(
         modifier = Modifier,
         navController = navController,
         startDestination = "Home Screen"
     ) {
         composable("Home Screen") {
-            HomeScreen(navController, homeScreenViewState.cocktail)
+            HomeScreen(
+                navController = navController,
+                cocktailSummary = homeScreenViewState.cocktailSummary
+            )
         }
-        composable("Detail Screen") {
-            DetailScreen(detailScreenViewState.cocktail)
+        composable(
+            "Detail Screen/{cocktailId}",
+            arguments = listOf(navArgument("cocktailId") { type = NavType.StringType })
+        ) {
+            val detailScreenViewModel: DetailScreenViewModel = hiltViewModel()
+            val detailScreenViewState by detailScreenViewModel.state.collectAsStateWithLifecycle()
+
+            DetailScreen(detailScreenViewState = detailScreenViewState)
         }
     }
 }
