@@ -1,4 +1,4 @@
-package com.example.cocktailapp.ui.DetailScreen.components
+package com.example.cocktailapp.ui.detailScreen.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -8,8 +8,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -17,19 +15,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cocktailapp.R
-import com.example.cocktailapp.data.local.model.SavedCocktailData
-import com.example.cocktailapp.ui.DetailScreen.DetailScreen
-import com.example.cocktailapp.ui.DetailScreen.DetailScreenViewModel
-import com.example.cocktailapp.ui.theme.CocktailAppTheme
+import com.example.cocktailapp.ui.detailScreen.CocktailDetail
 import com.example.cocktailapp.ui.theme.Shapes
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun DetailScreenCocktailCard(
     modifier: Modifier = Modifier,
-    cocktailData: SavedCocktailData?,
+    cocktailDetail: CocktailDetail?,
 ) {
     Card(
         shape = Shapes.small,
@@ -44,8 +38,8 @@ fun DetailScreenCocktailCard(
         ) {
             item {
                 GlideImage(
-                    imageModel = cocktailData?.strDrinkThumb,
-                    contentDescription = cocktailData?.strDrink.toString(),
+                    imageModel = cocktailDetail?.imageUrl,
+                    contentDescription = cocktailDetail?.name,
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
                         .clip(Shapes.small)
@@ -61,7 +55,7 @@ fun DetailScreenCocktailCard(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = cocktailData?.strDrink.toString(),
+                        text = cocktailDetail?.name.orEmpty(),
                         style = MaterialTheme.typography.h2,
                         color = MaterialTheme.colors.onSurface
                     )
@@ -73,45 +67,22 @@ fun DetailScreenCocktailCard(
                             color = MaterialTheme.colors.onSurface
                         )
                         Text(
-                            text = cocktailData?.strInstructions.toString(),
+                            text = cocktailDetail?.description.orEmpty(),
                             style = MaterialTheme.typography.subtitle2,
                             color = MaterialTheme.colors.onSurface
                         )
                         Spacer(modifier = Modifier.height(16.dp))
-                        Column {
+                        Text(
+                            text = stringResource(id = R.string.ingredients),
+                            style = MaterialTheme.typography.h1,
+                            color = MaterialTheme.colors.onSurface
+                        )
+                        cocktailDetail?.ingredients?.forEach { ingredient ->
                             Text(
-                                text = stringResource(id = R.string.ingredients),
-                                style = MaterialTheme.typography.h1,
+                                text = ingredient,
+                                style = MaterialTheme.typography.subtitle2,
                                 color = MaterialTheme.colors.onSurface
                             )
-                            if (cocktailData?.strMeasure1 != "null" || cocktailData.strIngredient1 != "null") {
-                                Text(
-                                    text = cocktailData?.strMeasure1 + " of " + cocktailData?.strIngredient1,
-                                    style = MaterialTheme.typography.subtitle2,
-                                    color = MaterialTheme.colors.onSurface
-                                )
-                            }
-                            if (cocktailData?.strMeasure2 != "null" || cocktailData.strIngredient2 != "null") {
-                                Text(
-                                    text = cocktailData?.strMeasure2 + " of " + cocktailData?.strIngredient2,
-                                    style = MaterialTheme.typography.subtitle2,
-                                    color = MaterialTheme.colors.onSurface
-                                )
-                            }
-                            if (cocktailData?.strMeasure3 != "null" || cocktailData.strIngredient3 != "null") {
-                                Text(
-                                    text = cocktailData?.strMeasure3 + " of " + cocktailData?.strIngredient3,
-                                    style = MaterialTheme.typography.subtitle2,
-                                    color = MaterialTheme.colors.onSurface
-                                )
-                            }
-                            if (cocktailData?.strMeasure4 != "null" || cocktailData.strIngredient4 != "null") {
-                                Text(
-                                    text = cocktailData?.strMeasure4 + " of " + cocktailData?.strIngredient4,
-                                    style = MaterialTheme.typography.subtitle2,
-                                    color = MaterialTheme.colors.onSurface
-                                )
-                            }
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Column(
@@ -125,14 +96,14 @@ fun DetailScreenCocktailCard(
                             )
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
-                                text = cocktailData?.strGlass.toString(),
+                                text = cocktailDetail?.container.orEmpty(),
                                 style = MaterialTheme.typography.subtitle2,
                                 color = MaterialTheme.colors.onSurface
                             )
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = cocktailData?.strAlcoholic.toString(),
+                            text = cocktailDetail?.alcoholic.orEmpty(),
                             style = MaterialTheme.typography.h1,
                             color = MaterialTheme.colors.onSurface
                         )

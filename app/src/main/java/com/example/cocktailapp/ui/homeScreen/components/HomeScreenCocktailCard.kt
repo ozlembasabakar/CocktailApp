@@ -1,4 +1,4 @@
-package com.example.cocktailapp.ui.HomeScreen.components
+package com.example.cocktailapp.ui.homeScreen.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -17,9 +17,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.cocktailapp.data.remote.model.CocktailData
-import com.example.cocktailapp.ui.HomeScreen.HomeScreen
-import com.example.cocktailapp.ui.HomeScreen.HomeScreenViewModel
+import com.example.cocktailapp.ui.homeScreen.CocktailSummary
+import com.example.cocktailapp.ui.homeScreen.HomeScreen
+import com.example.cocktailapp.ui.homeScreen.HomeScreenViewModel
 import com.example.cocktailapp.ui.theme.CocktailAppTheme
 import com.example.cocktailapp.ui.theme.Shapes
 import com.skydoves.landscapist.glide.GlideImage
@@ -28,7 +28,7 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun HomeScreenCocktailCard(
     modifier: Modifier = Modifier,
-    cocktailData: CocktailData?,
+    cocktailSummary: CocktailSummary?,
 ) {
 
     Card(
@@ -45,8 +45,8 @@ fun HomeScreenCocktailCard(
         ) {
             item {
                 GlideImage(
-                    imageModel = cocktailData?.strDrinkThumb,
-                    contentDescription = cocktailData?.strDrink.toString(),
+                    imageModel = cocktailSummary?.imageUrl,
+                    contentDescription = cocktailSummary?.name,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .clip(Shapes.small)
@@ -63,14 +63,14 @@ fun HomeScreenCocktailCard(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = cocktailData?.strDrink ?: "",
+                        text = cocktailSummary?.name.orEmpty(),
                         style = MaterialTheme.typography.h2,
                         modifier = Modifier,
                         color = MaterialTheme.colors.onSurface
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = cocktailData?.strInstructions ?: "",
+                        text = cocktailSummary?.description.orEmpty(),
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier,
                         maxLines = 3,
