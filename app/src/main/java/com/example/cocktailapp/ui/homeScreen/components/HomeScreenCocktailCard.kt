@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,12 +13,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
+import com.example.cocktailapp.R
 import com.example.cocktailapp.ui.homeScreen.CocktailSummary
-import com.example.cocktailapp.ui.homeScreen.HomeScreen
-import com.example.cocktailapp.ui.homeScreen.HomeScreenViewModel
-import com.example.cocktailapp.ui.theme.CocktailAppTheme
 import com.example.cocktailapp.ui.theme.Shapes
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -47,6 +41,7 @@ fun HomeScreenCocktailCard(
                 GlideImage(
                     imageModel = cocktailSummary?.imageUrl,
                     contentDescription = cocktailSummary?.name,
+                    previewPlaceholder = R.drawable.ic_launcher_foreground,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .clip(Shapes.small)
@@ -83,16 +78,20 @@ fun HomeScreenCocktailCard(
     }
 }
 
-
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
-fun CocktailAppPreview() {
-    CocktailAppTheme {
-        val navController = rememberNavController()
-        val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
-        val state by homeScreenViewModel.state.collectAsState()
+private fun HomeScreenCocktailCardPreview() {
+    // given
+    val cocktailSummary = CocktailSummary(
+        imageUrl = "sasa",
+        name = "Ayran",
+        description = "Çalkala yavrum ÇAL-KA-LA",
+        id = "1"
+    )
 
-        HomeScreen(navController = navController, state.cocktail)
-    }
+    // then
+    HomeScreenCocktailCard(
+        cocktailSummary = cocktailSummary
+    )
 }

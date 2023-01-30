@@ -35,15 +35,22 @@ fun DetailScreen(
     }
 }
 
-
-@Preview(name = "LightMode")
-@Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "LightMode", showSystemUi = true)
+@Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
-fun CocktailAppDetailScreenPreview() {
-    CocktailAppTheme {
-        val detailScreenViewModel: DetailScreenViewModel = hiltViewModel()
-        val state by detailScreenViewModel.state.collectAsState()
+private fun DetailScreenPreview() {
+    // given
+    val cocktailDetail = CocktailDetail(
+        imageUrl = "sasa",
+        name = "Ayran",
+        description = "Çalkala yavrum ÇAL-KA-LA",
+        ingredients = listOf(),
+        container = "Yayık",
+        alcoholic = "Alcoholic"
+    )
 
-        DetailScreen(cocktailData = state.cocktail)
-    }
+    // then
+    DetailScreen(
+        detailScreenViewState = DetailScreenViewState(cocktailDetail)
+    )
 }

@@ -40,6 +40,7 @@ fun DetailScreenCocktailCard(
                 GlideImage(
                     imageModel = cocktailDetail?.imageUrl,
                     contentDescription = cocktailDetail?.name,
+                    previewPlaceholder = R.drawable.ic_launcher_foreground,
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
                         .clip(Shapes.small)
@@ -114,16 +115,22 @@ fun DetailScreenCocktailCard(
     }
 }
 
-
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
+private fun DetailScreenCocktailCardPreview() {
+    // given
+    val cocktailDetail = CocktailDetail(
+        imageUrl = "sasa",
+        name = "Ayran",
+        description = "Çalkala yavrum ÇAL-KA-LA",
+        ingredients = listOf(),
+        container = "Yayık",
+        alcoholic = "Alcoholic"
+    )
 
-fun CocktailAppPreview() {
-    CocktailAppTheme {
-        val detailScreenViewModel: DetailScreenViewModel = hiltViewModel()
-        val state by detailScreenViewModel.state.collectAsState()
-
-        DetailScreen(cocktailData = state.cocktail)
-    }
+    // then
+    DetailScreenCocktailCard(
+        cocktailDetail = cocktailDetail
+    )
 }

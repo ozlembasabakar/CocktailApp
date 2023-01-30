@@ -48,17 +48,22 @@ fun HomeScreen(
     }
 }
 
-
 @Preview(name = "LightMode", showSystemUi = true)
 @Preview(name = "DarkMode", uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
-fun CocktailAppPreview() {
-    CocktailAppTheme {
-        val navController = rememberNavController()
-        val homeScreenViewModel: HomeScreenViewModel = hiltViewModel()
-        val state by homeScreenViewModel.state.collectAsState()
+private fun HomeScreenPreview() {
+    // given
+    val navController: NavController = rememberNavController()
+    val cocktailSummary = CocktailSummary(
+        imageUrl = "sasa",
+        name = "Ayran",
+        description = "Çalkala yavrum ÇAL-KA-LA",
+        id = "1"
+    )
 
-        HomeScreen(navController = navController, cocktailData = state.cocktail
-        )
-    }
+    // then
+    HomeScreen(
+        cocktailSummary = cocktailSummary,
+        navController = navController
+    )
 }
