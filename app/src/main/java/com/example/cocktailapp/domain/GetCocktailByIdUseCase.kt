@@ -7,7 +7,7 @@ class GetCocktailByIdUseCase @Inject constructor(
     private val cocktailRepository: CocktailRepository,
 ) {
 
-    suspend operator fun invoke(cocktailId: String): Cocktail {
+    operator fun invoke(cocktailId: String): Cocktail {
         return cocktailRepository.getCocktailFromDatabaseById(cocktailId = cocktailId)
     }
 }

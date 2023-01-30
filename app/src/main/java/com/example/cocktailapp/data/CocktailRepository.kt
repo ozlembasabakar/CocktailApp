@@ -6,9 +6,6 @@ import com.example.cocktailapp.data.remote.model.CocktailData
 import com.example.cocktailapp.data.remote.network.CocktailRemoteDataSource
 import com.example.cocktailapp.domain.Cocktail
 import com.example.cocktailapp.domain.Ingredient
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CocktailRepository @Inject constructor(
@@ -16,10 +13,7 @@ class CocktailRepository @Inject constructor(
     private val cocktailLocalDataSource: CocktailLocalDataSource,
 ) {
     suspend fun getRandomCocktail(): Cocktail? {
-        withContext(Dispatchers.IO) {
-            saveToDb(cocktailRemoteDataSource.getRandomCocktail())
-            delay(500)
-        }
+        saveToDb(cocktailRemoteDataSource.getRandomCocktail())
 
         Log.d("lastIndex", "${cocktailLocalDataSource.getSavedCocktailList().size}")
 
@@ -41,7 +35,7 @@ class CocktailRepository @Inject constructor(
         }.lastOrNull()
     }
 
-    suspend fun getCocktailFromDatabaseById(cocktailId: String): Cocktail {
+    fun getCocktailFromDatabaseById(cocktailId: String): Cocktail {
         val savedCocktail = cocktailLocalDataSource.getSavedCocktailById(cocktailId)
         return Cocktail(
             id = savedCocktail.idDrink,
