@@ -23,6 +23,7 @@ firebase-crashlytics-ktx = "18.3.3"
 firebase-analytics-ktx = "21.2.0"
 firebase-crashlytics = "18.2.13"
 firebase-analytics = "21.1.1"
+firebase-perf-ktx = "20.3.1"
 
 [libraries]
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
@@ -52,12 +53,12 @@ compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", ve
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "test-espresso-core" }
 test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "test-ext-junit" }
-junit = {module = "junit:junit", version.ref = "junit" }
-
-firebase-crashlytics-ktx = {module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "firebase-crashlytics-ktx" }
-firebase-analytics-ktx = {module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase-analytics-ktx" }
-firebase-crashlytics = {module = "com.google.firebase:firebase-crashlytics", version.ref = "firebase-crashlytics" }
-firebase-analytics = {module = "com.google.firebase:firebase-analytics", version.ref = "firebase-analytics" }
+junit = { module = "junit:junit", version.ref = "junit" }
+firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "firebase-crashlytics-ktx" }
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase-analytics-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics", version.ref = "firebase-crashlytics" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebase-analytics" }
+firebase-perf-ktx-ver = { module = "com.google.firebase:firebase-perf-ktx", version.ref = "firebase-perf-ktx" }
 
 #[bundles]
 #room = ["room-ktx", "room-compiler", "room-runtime"]
