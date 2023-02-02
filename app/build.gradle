@@ -3,6 +3,8 @@ plugins {
     alias libs.plugins.kotlin.android
     alias libs.plugins.kotlin.kapt
     alias libs.plugins.dagger.hilt
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -110,4 +112,10 @@ dependencies {
 
     //Navigation
     implementation libs.navigation.compose
+
+    //Firebase
+    implementation libs.firebase.crashlytics.ktx
+    implementation libs.firebase.analytics.ktx
+    implementation libs.firebase.crashlytics
+    implementation libs.firebase.analytics
 }

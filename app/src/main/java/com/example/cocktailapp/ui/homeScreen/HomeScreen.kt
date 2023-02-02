@@ -44,6 +44,14 @@ fun HomeScreen(
                 modifier = Modifier,
                 cocktailSummary = cocktailSummary
             )
+            /*
+            Button(
+                onClick =
+                { throw RuntimeException("Test Crash") }
+            ) {
+                Text(text = "Test Crash")
+            }
+            */
         }
     }
 }
