@@ -30,8 +30,8 @@ class DetailScreenViewModel @Inject constructor(
         //Log.d("state", state.value.cocktail.toString())
     }
 
-    fun fetchDataFromUseCase(cocktailId: String) {
-        viewModelScope.launch() {
+    private fun fetchDataFromUseCase(cocktailId: String) {
+        viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 val cocktail = getCocktailByIdUseCase(cocktailId = cocktailId)
 

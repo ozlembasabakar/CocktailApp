@@ -7,11 +7,11 @@ import com.example.cocktailapp.data.local.model.SavedCocktailData
 interface CocktailDao {
 
     @Query("SELECT * FROM cocktails")
-    fun getSavedCocktailList(): List<SavedCocktailData>
+    fun getCocktailListFromDatabase(): List<SavedCocktailData>
 
     @Query("SELECT * FROM cocktails WHERE idDrink = :id")
-    fun getSavedCocktailById(id: String?): SavedCocktailData
+    fun getCocktailByIdFromDatabase(id: String?): SavedCocktailData
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSavedCocktailList(savedCocktailData: SavedCocktailData)
+    suspend fun insertCocktailFromDatabase(savedCocktailData: SavedCocktailData)
 }

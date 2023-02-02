@@ -11,9 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-//import com.example.cocktailapp.BuildConfig
-
-//const val BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/"
 
 @Module
 @InstallIn(SingletonComponent::class)

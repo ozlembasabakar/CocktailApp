@@ -27,7 +27,7 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     private fun fetchDataFromUseCase() {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val cocktail = getRandomCocktailUseCase()
 

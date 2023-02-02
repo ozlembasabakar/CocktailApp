@@ -15,23 +15,23 @@ class CocktailLocalDataSource @Inject constructor(
 
     private val coroutineScope = CoroutineScope(Dispatchers.Default)
 
-    fun getSavedCocktailList(): List<SavedCocktailData> {
-        Log.d("CocktailLocalDataSource", "${(cocktailDao.getSavedCocktailList().size) - 1}")
+    fun getCocktailListFromDatabase(): List<SavedCocktailData> {
+        Log.d("CocktailLocalDataSource", "${(cocktailDao.getCocktailListFromDatabase().size) - 1}")
 
-        return cocktailDao.getSavedCocktailList()
+        return cocktailDao.getCocktailListFromDatabase()
     }
 
-    fun getSavedCocktailById(id: String?): SavedCocktailData {
-        return cocktailDao.getSavedCocktailById(id)
+    fun getCocktailByIdFromDatabase(id: String?): SavedCocktailData {
+        return cocktailDao.getCocktailByIdFromDatabase(id)
     }
 
-    fun insertCocktailList(addSavedCocktailData: SavedCocktailData) {
+    private fun insertCocktailFromDatabase(addSavedCocktailData: SavedCocktailData) {
         coroutineScope.launch(Dispatchers.IO) {
-            cocktailDao.insertSavedCocktailList(addSavedCocktailData)
+            cocktailDao.insertCocktailFromDatabase(addSavedCocktailData)
         }
     }
 
-    fun saveToDb(cocktailData: CocktailData?) {
+    fun saveCocktailToDb(cocktailData: CocktailData?) {
         val savedCocktailData = SavedCocktailData(
             idDrink = cocktailData?.idDrink ?: "null",
             strDrinkThumb = cocktailData?.strDrinkThumb ?: "null",
@@ -48,6 +48,6 @@ class CocktailLocalDataSource @Inject constructor(
             strGlass = cocktailData?.strGlass ?: "null",
             strAlcoholic = cocktailData?.strAlcoholic ?: "null",
         )
-        insertCocktailList(savedCocktailData)
+        insertCocktailFromDatabase(savedCocktailData)
     }
 }

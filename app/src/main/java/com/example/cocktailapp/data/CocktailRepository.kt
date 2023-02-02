@@ -13,11 +13,12 @@ class CocktailRepository @Inject constructor(
     private val cocktailLocalDataSource: CocktailLocalDataSource,
 ) {
     suspend fun getRandomCocktail(): Cocktail? {
-        saveToDb(cocktailRemoteDataSource.getRandomCocktail())
+        saveCocktailToDb(cocktailRemoteDataSource.getRandomCocktail())
 
-        Log.d("lastIndex", "${cocktailLocalDataSource.getSavedCocktailList().size}")
+        Log.d("getCocktailListFromDb",
+            "${cocktailLocalDataSource.getCocktailListFromDatabase().size}")
 
-        return cocktailLocalDataSource.getSavedCocktailList().map {
+        return cocktailLocalDataSource.getCocktailListFromDatabase().map {
             Cocktail(
                 id = it.idDrink,
                 imageUrl = it.strDrinkThumb,
@@ -36,7 +37,7 @@ class CocktailRepository @Inject constructor(
     }
 
     fun getCocktailFromDatabaseById(cocktailId: String): Cocktail {
-        val savedCocktail = cocktailLocalDataSource.getSavedCocktailById(cocktailId)
+        val savedCocktail = cocktailLocalDataSource.getCocktailByIdFromDatabase(cocktailId)
         return Cocktail(
             id = savedCocktail.idDrink,
             imageUrl = savedCocktail.strDrinkThumb,
@@ -57,7 +58,7 @@ class CocktailRepository @Inject constructor(
         )
     }
 
-    private fun saveToDb(cocktailData: CocktailData?) {
-        cocktailLocalDataSource.saveToDb(cocktailData = cocktailData)
+    private fun saveCocktailToDb(cocktailData: CocktailData?) {
+        cocktailLocalDataSource.saveCocktailToDb(cocktailData = cocktailData)
     }
 }
