@@ -121,4 +121,8 @@ dependencies {
     implementation libs.firebase.analytics
     implementation libs.firebase.perf.ktx.ver
     implementation 'com.google.firebase:firebase-perf-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.1'
+
+    //Preference Datastore
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
 }

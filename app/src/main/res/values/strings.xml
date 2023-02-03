@@ -20,4 +20,6 @@
     <string name="ingredients">Ingredients</string>
     <string name="glass">Glass</string>
     <string name="undefined">Undefined</string>
+
+    <string name="channel_name">Global</string>
 </resources>
